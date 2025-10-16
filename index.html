@@ -1,12 +1,874 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="script.js">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASR Klinika</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png" type="image/png">
 </head>
+
 <body>
+  <!-- navbar -->
+  <header class="sticky top-0 z-50">
+    <nav class="bg-white shadow-md">
+      <input type="checkbox" id="nav-toggle" class="hidden">
+      <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+        <a href="#" class="flex-shrink-0 inline-flex items-center">
+          <img src="logo.png" alt="Logo"
+            class="h-14 w-auto object-contain transform origin-left scale-[1.8] sm:scale-[2.0]">
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-8">
+          <li><a href="#inpatient" class="relative inline-block py-4 text-gray-700 hover:text-purple-700 group">
+              Стационар
+              <span
+                class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-700 group-hover:w-full transition-all duration-300"></span>
+            </a></li>
+          <li><a href="#doctors" class="relative inline-block py-4 text-gray-700 hover:text-purple-700 group">
+              Врачи
+              <span
+                class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-700 group-hover:w-full transition-all duration-300"></span>
+            </a></li>
+          <li><a href="#lab" class="relative inline-block py-4 text-gray-700 hover:text-purple-700 group">
+              Лаборатория
+              <span
+                class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-700 group-hover:w-full transition-all duration-300"></span>
+            </a></li>
+          <li><a href="#ultrasound" class="relative inline-block py-4 text-gray-700 hover:text-purple-700 group">
+              УЗИ
+              <span
+                class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-700 group-hover:w-full transition-all duration-300"></span>
+            </a></li>
+          <li><a href="#lor" class="relative inline-block py-4 text-gray-700 hover:text-purple-700 group">
+              ЛОР
+              <span
+                class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-700 group-hover:w-full transition-all duration-300"></span>
+            </a></li>
+          <li><a href="#eeg-echo" class="relative inline-block py-4 text-gray-700 hover:text-purple-700 group">
+              ЭХО &amp; ЭЭГ
+              <span
+                class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-700 group-hover:w-full transition-all duration-300"></span>
+            </a></li>
+          <li><a href="#contacts" class="relative inline-block py-4 text-gray-700 hover:text-purple-700 group">
+              Контакты
+              <span
+                class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-700 group-hover:w-full transition-all duration-300"></span>
+            </a></li>
+        </ul>
+        <label for="nav-toggle" aria-label="Открыть меню"
+          class="nav-trigger lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 cursor-pointer">
+
+          <svg class="open-icon h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+
+          <svg class="close-icon h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </label>
+      </div>
+      <div id="mobile-menu" class="lg:hidden">
+        <div class="container mx-auto px-4 py-2">
+          <ul class="flex flex-col py-1">
+            <li><a href="#inpatient" class="block px-4 py-3 rounded-md hover:bg-purple-50">Стационар</a></li>
+            <li><a href="#doctors" class="block px-4 py-3 rounded-md hover:bg-purple-50">Врачи</a></li>
+            <li><a href="#lab" class="block px-4 py-3 rounded-md hover:bg-purple-50">Лаборатория</a></li>
+            <li><a href="#ultrasound" class="block px-4 py-3 rounded-md hover:bg-purple-50">УЗИ</a></li>
+            <li><a href="#lor" class="block px-4 py-3 rounded-md hover:bg-purple-50">ЛОР</a></li>
+            <li><a href="#eeg-echo" class="block px-4 py-3 rounded-md hover:bg-purple-50">ЭХО &amp; ЭЭГ</a></li>
+            <li><a href="#contacts" class="block px-4 py-3 rounded-md hover:bg-purple-50">Контакты</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- Slider with background -->
+    <section>
+      <div class="relative h-screen w-screen overflow-hidden">
+        <picture class="absolute inset-0">
+          <source type="image/avif"
+            srcset="headerphoto640.avif 640w, headerphoto1280.avif 1280w, headerphoto1980.avif 1980w" sizes="100vw">
+          <source type="image/webp"
+            srcset="headerphoto640.webp 640w, headerphoto1280.webp 1280w, headerphoto1980.webp 1980w" sizes="100vw">
+          <img src="headerphoto1280.webp"
+            srcset="headerphoto640.webp 640w, headerphoto1280.webp 1280w, headerphoto1980.webp 1980w" sizes="100vw"
+            alt="" class="w-full h-full object-cover" fetchpriority="high" decoding="async">
+        </picture>
+
+        <div id="slider"
+          class="absolute inset-0 flex flex-col items-start justify-center pl-20 pr-4 text-left text-white">
+          <h1 id="slider-title" class="text-7xl font-bold mb-4">Стационарное Лечение</h1>
+          <p id="slider-subtitle" class="text-2xl"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hospital in numbers -->
+    <section class="pt-16 pb-16 bg-gray-50">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mt-1 mb-8 text-purple-700 pb-6">Клиника в цифрах</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8 justify-items-center">
+          <div>
+            <div class="text-5xl font-extrabold text-gray-900 mt-5 text-black-700">5</div>
+            <div class="mt-8 text-gray-600 uppercase text-black-700">лет доверия и заботы</div>
+          </div>
+          <div>
+            <div class="text-5xl font-extrabold text-gray-900 mt-5 text-black-700">30</div>
+            <div class="mt-8 text-gray-600 uppercase text-black-700">комфортных коек</div>
+          </div>
+          <div>
+            <div class="text-5xl font-extrabold text-gray-900 mt-5 text-black-700">10&nbsp;000+</div>
+            <div class="mt-8 text-gray-600 uppercase text-black-700">вылеченных пациентов</div>
+          </div>
+          <div>
+            <div class="text-5xl font-extrabold text-gray-900 mt-5 text-black-700">15&nbsp;000+</div>
+            <div class="mt-8 text-gray-600 uppercase text-black-700">проведённых диагностик</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- our services-->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-8 text-purple-700">Наши услуги</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 xl:gap-4">
+
+          <!-- inpatient -->
+          <div
+            class="relative w-full h-36 sm:h-40 overflow-hidden rounded-lg shadow-lg group transition-transform duration-300 hover:scale-105">
+            <img src="InpatientPic.webp" alt="Стационар"
+              class="object-cover w-full h-full transition-opacity duration-300 group-hover:opacity-90" loading="lazy"
+              decoding="async">
+            <div
+              class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-colors duration-300 flex items-center justify-center">
+              <span class="text-white text-xl sm:text-2xl font-semibold">Стационар</span>
+            </div>
+          </div>
+
+          <!-- outpatient -->
+          <div
+            class="relative w-full h-36 sm:h-40 overflow-hidden rounded-lg shadow-lg group transition-transform duration-300 hover:scale-105">
+            <img src="doctorspic.webp" alt="Прием к врачу"
+              class="object-cover w-full h-full transition-opacity duration-300 group-hover:opacity-90" loading="lazy"
+              decoding="async">
+            <div
+              class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-colors duration-300 flex items-center justify-center">
+              <span class="text-white text-xl sm:text-2xl font-semibold">Прием к врачу</span>
+            </div>
+          </div>
+
+          <!-- lab -->
+          <div
+            class="relative w-full h-36 sm:h-40 overflow-hidden rounded-lg shadow-lg group transition-transform duration-300 hover:scale-105">
+            <img src="labpic1.webp" alt="Лаборатория"
+              class="object-cover w-full h-full transition-opacity duration-300 group-hover:opacity-90" loading="lazy"
+              decoding="async">
+            <div
+              class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-colors duration-300 flex items-center justify-center">
+              <span class="text-white text-xl sm:text-2xl font-semibold">Лаборатория</span>
+            </div>
+          </div>
+
+          <!-- ultrasound -->
+          <div
+            class="relative w-full h-36 sm:h-40 overflow-hidden rounded-lg shadow-lg group transition-transform duration-300 hover:scale-105">
+            <img src="usgpic2.webp" alt="УЗИ"
+              class="object-cover w-full h-full transition-opacity duration-300 group-hover:opacity-90" loading="lazy"
+              decoding="async">
+            <div
+              class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-colors duration-300 flex items-center justify-center">
+              <span class="text-white text-xl sm:text-2xl font-semibold">УЗИ</span>
+            </div>
+          </div>
+
+          <!-- lor -->
+          <div
+            class="relative w-full h-36 sm:h-40 overflow-hidden rounded-lg shadow-lg group transition-transform duration-300 hover:scale-105">
+            <img src="lorpic.webp" alt="ЛОР"
+              class="object-cover w-full h-full transition-opacity duration-300 group-hover:opacity-90" loading="lazy"
+              decoding="async">
+            <div
+              class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-colors duration-300 flex items-center justify-center">
+              <span class="text-white text-xl sm:text-2xl font-semibold">ЛОР</span>
+            </div>
+          </div>
+
+          <!-- echo-eeg-->
+          <div
+            class="relative w-full h-36 sm:h-40 overflow-hidden rounded-lg shadow-lg group transition-transform duration-300 hover:scale-105">
+            <img src="exoeeg2.webp" alt="ЭХО и ЭЭГ"
+              class="object-cover w-full h-full transition-opacity duration-300 group-hover:opacity-90" loading="lazy"
+              decoding="async">
+            <div
+              class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-colors duration-300 flex items-center justify-center">
+              <span class="text-white text-xl sm:text-2xl font-semibold">ЭХО &amp; ЭЭГ</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Text with photo -->
+    <section id="inpatient" class="w-full h-[600px] flex">
+      <div class="w-1/2 flex flex-col justify-center p-12 bg-white">
+        <h2 class="text-4xl font-extrabold mb-4 text-purple-700">Консультативно-диагностическая клиника на базе
+          стационарного лечения</h2>
+        <p class="text-lg text-gray-700 mb-6">
+          Мы предлагаем стационарное лечение с круглосуточным медицинским наблюдением, точной диагностикой и участием
+          профильных специалистов. В основе нашей работы — индивидуальный подход, комфортные условия пребывания и
+          доказательные методы терапии.
+        </p>
+      </div>
+      <div class="w-1/2 relative">
+        <img src="pic112.webp" alt="Стационарное отделение" class="object-cover w-full h-full">
+        <div class="absolute bottom-8 left-12">
+          <a href="tel:+998712955544" aria-label="Позвонить +998 71 295 55 44"
+            class="bg-white text-purple-600 border border-purple-600 px-8 py-4 rounded-lg transform transition duration-300 hover:scale-105 hover:bg-purple-600 hover:text-white text-lg font-bold inline-flex items-center justify-center">
+            Записаться
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- information about the hospital -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-extrabold text-center text-purple-700 mb-12">Условия, соответствующие требованиям
+          современной медицины</h2>
+        <div class="flex flex-col lg:flex-row gap-12 items-start">
+          <div class="lg:w-1/2 order-1 lg:order-1">
+            <h3 class="text-2xl font-semibold text-purple-600 mb-8">Ощутите заботу в каждой детали</h3>
+            <div class="space-y-12 text-gray-700">
+              <div>
+                <h4 class="text-xl font-semibold text-purple-600 mb-4">Медицинская поддержка и безопасность</h4>
+                <ul class="pl-4 border-l-4 border-purple-500 space-y-2">
+                  <li>Круглосуточный контроль квалифицированного персонала</li>
+                  <li>Индивидуальное сопровождение на каждом этапе лечения</li>
+                  <li>Экстренный вызов медперсонала одним нажатием</li>
+                  <li>Точное обследование на современном диагностическом оборудовании</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-purple-600 mb-4">Комфортные условия пребывания</h4>
+                <ul class="pl-4 border-l-4 border-purple-500 space-y-2">
+                  <li>Персональный мини-холодильник</li>
+                  <li>Удобный шкаф для вещей</li>
+                  <li>Чистые душевые и санузлы</li>
+                  <li>Wi-Fi и телевизор в каждой палате</li>
+                  <li>Трёхразовое сбалансированное питание</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-purple-600 mb-4">Дополнительные возможности</h4>
+                <ul class="pl-4 border-l-4 border-purple-500 space-y-2">
+                  <li>Расслабляющий массаж</li>
+                  <li>Иглотерапия по назначению врача</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-1/2 order-2 lg:order-2 w-full">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="rounded-lg overflow-hidden shadow-md cursor-pointer">
+                <img src="inpatient1.webp" data-full="inpatient1.webp" alt="Палата 1"
+                  class="w-full h-48 md:h-56 object-cover" loading="lazy" decoding="async">
+              </div>
+              <div class="rounded-lg overflow-hidden shadow-md cursor-pointer">
+                <img src="inpatient2.webp" data-full="inpatient2.webp" alt="Палата 2"
+                  class="w-full h-48 md:h-56 object-cover" loading="lazy" decoding="async">
+              </div>
+              <div class="rounded-lg overflow-hidden shadow-md cursor-pointer">
+                <img src="inpatient3.webp" data-full="inpatient3.webp" alt="Палата 3"
+                  class="w-full h-48 md:h-56 object-cover" loading="lazy" decoding="async">
+              </div>
+              <div class="rounded-lg overflow-hidden shadow-md cursor-pointer">
+                <img src="inpatient4.webp" data-full="inpatient4.webp" alt="Палата 4"
+                  class="w-full h-48 md:h-56 object-cover" loading="lazy" decoding="async">
+              </div>
+              <div class="rounded-lg overflow-hidden shadow-md cursor-pointer col-span-2">
+                <img src="inpatient5.webp" data-full="inpatient5.webp" alt="Палата 5"
+                  class="w-full h-48 md:h-64 object-cover" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-purple-600 text-center font-medium">
+              Кликните на изображение, чтобы увеличить его
+            </p>
+          </div>
+        </div>
+        <div id="lightbox" class="fixed inset-0 z-50 bg-black bg-opacity-75 hidden items-center justify-center p-4">
+          <button id="lb-close" type="button" aria-label="Закрыть изображение"
+            class="absolute top-6 right-6 z-[60] text-white text-3xl leading-none p-2 select-none">&times;</button>
+          <img id="lb-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+            alt="Увеличенное изображение" class="max-h-full max-w-full rounded-lg shadow-xl cursor-pointer">
+        </div>
+      </div>
+    </section>
+
+    <!-- additional hospital services -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-extrabold text-purple-700 mb-8">Экспертные сервисы для вашего комфорта</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="flex items-center space-x-4">
+            <img src="pic201.webp" alt="Массаж" class="h-16 w-16" loading="lazy" decoding="async">
+            <p class="text-lg font-medium text-gray-800">Расслабляющий массаж</p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <img src="pic204.webp" alt="Иглотерапия" class="h-16 w-16" loading="lazy" decoding="async">
+            <p class="text-lg font-medium text-gray-800">Профессиональная иглотерапия</p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <img src="pic203.webp" alt="Консультация" class="h-16 w-16" loading="lazy" decoding="async">
+            <p class="text-lg font-medium text-gray-800">Консультация любого специалиста</p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <img src="pic202.webp" alt="Физиотерапия" class="h-16 w-16" loading="lazy" decoding="async">
+            <p class="text-lg font-medium text-gray-800">Современная физиотерапия</p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <img src="pic205.webp" alt="Питание" class="h-16 w-16" loading="lazy" decoding="async">
+            <p class="text-lg font-medium text-gray-800">Индивидуальный план питания</p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <img src="pic206.webp" alt="Психолог" class="h-16 w-16" loading="lazy" decoding="async">
+            <p class="text-lg font-medium text-gray-800">Психологическая поддержка</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disease Cards -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">Что вас беспокоит? Мы лечим:</h2>
+
+        <div class="flex gap-4 md:gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
+          <!-- Карточка -->
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic100.webp" alt="Пневмония и бронхит" class="disease-img" loading="lazy" decoding="async">
+            <div class="disease-title">Пневмония и бронхит</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic101.webp" alt="Артериальная гипертония" class="disease-img" loading="lazy" decoding="async">
+            <div class="disease-title">Артериальная гипертония</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic102.webp" alt="Сахарный диабет" class="disease-img" loading="lazy" decoding="async">
+            <div class="disease-title">Сахарный диабет</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic103.webp" alt="Язва желудка, гастрит" class="disease-img" loading="lazy" decoding="async">
+            <div class="disease-title">Язва желудка, гастрит</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic104.webp" alt="Холецистит, панкреатит" class="disease-img" loading="lazy" decoding="async">
+            <div class="disease-title">Холецистит, панкреатит</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic105.webp" alt="Остеохондроз, артрит, артроз" class="disease-img" loading="lazy"
+              decoding="async">
+            <div class="disease-title">Остеохондроз, артрит, артроз</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic106.webp" alt="Инфекции мочевыводящих путей" class="disease-img" loading="lazy"
+              decoding="async">
+            <div class="disease-title">Инфекции мочевыводящих путей</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic107.webp" alt="Гинекологические заболевания" class="disease-img" loading="lazy"
+              decoding="async">
+            <div class="disease-title">Гинекологические заболевания</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic108.webp" alt="Урологические заболевания" class="disease-img" loading="lazy" decoding="async">
+            <div class="disease-title">Урологические заболевания</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic109.webp" alt="Кардиологические проблемы" class="disease-img" loading="lazy" decoding="async">
+            <div class="disease-title">Кардиологические проблемы</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic110.webp" alt="Неврозы, депрессии" class="disease-img" loading="lazy" decoding="async">
+            <div class="disease-title">Неврозы, депрессии</div>
+          </div>
+
+          <div class="disease-card flex-none bg-white rounded-lg shadow-lg overflow-hidden snap-start">
+            <img src="pic111.webp" alt="Кожные заболевания" class="disease-img" loading="lazy" decoding="async">
+            <div class="disease-title">Кожные заболевания</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- hospital admission -->
+    <section id="admission" class="bg-[#794AC6] py-16">
+      <div class="container mx-auto px-4">
+        <div class="admission-box flex rounded-lg overflow-hidden">
+          <!-- Текст -->
+          <div class="admission-text w-1/2 flex flex-col justify-center p-8 md:p-12">
+            <h2 class="text-white font-extrabold mb-6 text-3xl md:text-4xl leading-tight">
+              Стационар: забота и восстановление в уюте
+            </h2>
+            <p class="text-white text-base md:text-lg mb-8 leading-relaxed">
+              Откройте для себя высокий уровень стационарного ухода с круглосуточным медицинским надзором, комфортом и
+              индивидуальным подходом к каждому пациенту.
+            </p>
+
+            <!-- Кнопка для десктопа (видна на ≥768px) -->
+            <a href="tel:+998712955544"
+              class="admission-btn-desktop hidden md:inline-flex bg-white text-purple-600 font-bold px-6 py-3 rounded-lg ...">
+              Записаться
+            </a>
+          </div>
+
+          <!-- Фото -->
+          <div class="admission-media relative w-1/2">
+            <img src="picture3.png" alt="Стационар" class="object-cover w-full h-full">
+
+            <!-- Кнопка для мобильных (видна на <768px) -->
+            <a href="tel:+998712955544"
+              class="admission-btn-mobile md:hidden absolute left-1/2 -translate-x-1/2 bottom-4 bg-white text-purple-600 font-bold px-6 py-3 rounded-lg ...">
+              Записаться
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Doctor's cards-->
+    <section id="doctors" class="pt-8 pb-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-extrabold text-center text-purple-700 mb-12">Наши врачи</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+            <img src="lorvrach.png" alt="Иванов Иван Иванович" class="w-full h-72 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-1">Абдуллаев Мирзажон Адхамович</h3>
+            <p class="text-purple-600 mb-4">ЛОР</p>
+            <div class="mt-auto flex space-x-2">
+              <a href="tel:+998712955544" aria-label="Позвонить +998 71 295 55 44"
+                class="bg-purple-600 text-white font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">Записаться</a>
+              <button type="button"
+                class="bg-white text-purple-600 border border-purple-600 font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 show-doctor"
+                data-index="0">Подробнее</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+            <img src="nevropatolog2.png" alt="Петрова Зокир Сергеевна" class="w-full h-72 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-1">Юсупов Зокир Рахмонович</h3>
+            <p class="text-purple-600 mb-4">Невропатолог</p>
+            <div class="mt-auto flex space-x-2">
+              <a href="tel:+998712955544" aria-label="Позвонить +998 71 295 55 44"
+                class="bg-purple-600 text-white font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">Записаться</a>
+              <button type="button"
+                class="bg-white text-purple-600 border border-purple-600 font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 show-doctor"
+                data-index="1">Подробнее</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+            <img src="terapevt.png" alt="Сидоров Алексей Павлович" class="w-full h-72 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-1">Югай Дмитрий Феликсович</h3>
+            <p class="text-purple-600 mb-4">Невропатолог</p>
+            <div class="mt-auto flex space-x-2">
+              <a href="tel:+998712955544" aria-label="Позвонить +998 71 295 55 44"
+                class="bg-purple-600 text-white font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">Записаться</a>
+              <button type="button"
+                class="bg-white text-purple-600 border border-purple-600 font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 show-doctor"
+                data-index="2">Подробнее</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+            <img src="kardiolog.png" alt="Кузнецова Ольга Владимировна"
+              class="w-full h-72 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-1">Абдуллаев Ахрор Нумонжонович</h3>
+            <p class="text-purple-600 mb-4">Терапевт-Кардиолог</p>
+            <div class="mt-auto flex space-x-2">
+              <a href="tel:+998712955544" aria-label="Позвонить +998 71 295 55 44"
+                class="bg-purple-600 text-white font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">Записаться</a>
+              <button type="button"
+                class="bg-white text-purple-600 border border-purple-600 font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 show-doctor"
+                data-index="3">Подробнее</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+            <img src="massaj.png" alt="Алексеев Сергей Александрович" class="w-full h-72 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-1">Тиништибекова Юлдуз</h3>
+            <p class="text-purple-600 mb-4">Массажист</p>
+            <div class="mt-auto flex space-x-2">
+              <a href="tel:+998712955544" aria-label="Позвонить +998 71 295 55 44"
+                class="bg-purple-600 text-white font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">Записаться</a>
+              <button type="button"
+                class="bg-white text-purple-600 border border-purple-600 font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 show-doctor"
+                data-index="4">Подробнее</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+            <img src="uzi.png" alt="Смирнова Елена Николаевна" class="w-full h-72 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-1">Хошимова Ёдгора Мухитдиновна</h3>
+            <p class="text-purple-600 mb-4">УЗИ</p>
+            <div class="mt-auto flex space-x-2">
+              <a href="tel:+998712955544" aria-label="Позвонить +998 71 295 55 44"
+                class="bg-purple-600 text-white font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">Записаться</a>
+              <button type="button"
+                class="bg-white text-purple-600 border border-purple-600 font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 show-doctor"
+                data-index="5">Подробнее</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+            <img src="nevropatolog.png" alt="Волков Дмитрий Иванович" class="w-full h-72 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-1">Кодирова Фарида Кобулжановна</h3>
+            <p class="text-purple-600 mb-4">Невропатолог</p>
+            <div class="mt-auto flex space-x-2">
+              <a href="tel:+998712955544" aria-label="Позвонить +998 71 295 55 44"
+                class="bg-purple-600 text-white font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">Записаться</a>
+              <button type="button"
+                class="bg-white text-purple-600 border border-purple-600 font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 show-doctor"
+                data-index="6">Подробнее</button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+            <img src="labvrach.png" alt="Макарова Анна Петровна" class="w-full h-72 object-cover rounded-lg mb-4">
+            <h3 class="text-xl font-semibold text-gray-800 mb-1">Джалолова Ойдин Шухратовна</h3>
+            <p class="text-purple-600 mb-4">Лаборант-Врач</p>
+            <div class="mt-auto flex space-x-2">
+              <a href="tel:+998712955544" aria-label="Позвонить +998 71 295 55 44"
+                class="bg-purple-600 text-white font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">Записаться</a>
+              <button type="button"
+                class="bg-white text-purple-600 border border-purple-600 font-bold px-4 py-2 rounded-lg transition-transform duration-300 hover:scale-105 show-doctor"
+                data-index="7">Подробнее</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal window -->
+      <div id="doctor-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center p-6">
+        <div class="bg-white rounded-lg max-w-md w-full relative p-6">
+          <button id="modal-close" type="button"
+            class="absolute top-4 right-4 text-gray-500 text-2xl hover:text-gray-800">&times;</button>
+          <img id="modal-photo" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt=""
+            class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
+          <h3 id="modal-name" class="text-2xl font-bold text-center mb-2">.</h3>
+          <p id="modal-title" class="text-purple-600 text-center mb-4"></p>
+          <!--  doctors' schedule -->
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">График приёма</h4>
+          <p id="modal-schedule" class="text-gray-700 mb-4"></p>
+          <p class="text-sm text-gray-600 mb-4">Пожалуйста, уточняйте расписание по телефону перед визитом.</p>
+          <div id="modal-info" class="text-gray-700 space-y-2"></div>
+        </div>
+      </div>
+    </section>
+    <div class="h-10 bg-gradient-to-b from-gray-50 to-white"></div>
+
+    <!-- Lab -->
+    <section id="lab" class="py-16 bg-white">
+      <div class="container mx-auto px-4 space-y-12">
+        <h2 class="text-4xl font-extrabold text-center text-purple-700">
+          Лабораторная точность — ваши результаты быстро
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          <div class="space-y-6">
+            <h3 class="text-2xl font-semibold text-purple-600 border-l-4 border-purple-600 pl-4">
+              Здесь каждый тест на вес золота
+            </h3>
+            <p class="text-gray-700">
+              В Лаборатории ASR мы сочетаем точность научных методик и скорость обработки,
+              чтобы вы получили результаты максимально быстро и уверенно. Наши ключевые преимущества:
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="mt-1 mr-3 text-purple-600">✔</span>
+                <span class="text-gray-800">Комплексные панели по биохимии и гормонам</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mt-1 mr-3 text-purple-600">✔</span>
+                <span class="text-gray-800">ПЦР и серология с гарантией достоверности</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mt-1 mr-3 text-purple-600">✔</span>
+                <span class="text-gray-800">Экспресс-аналитика: результат за 1 час</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mt-1 mr-3 text-purple-600">✔</span>
+                <span class="text-gray-800">Мониторинг качества на каждом этапе</span>
+              </li>
+            </ul>
+            <p class="text-sm text-gray-600">
+              Наши специалисты сертифицированы по международным стандартам, а оборудование проходит ежедневную
+              калибровку.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <img src="labpic1.webp" alt="Зона подготовки образцов" class="w-full h-60 object-cover rounded-lg shadow-xl">
+            <img src="labpic2.webp" alt="Аналитическое оборудование"
+              class="w-full h-60 object-cover rounded-lg shadow-xl">
+            <img src="labpic3.webp" alt="Выдача результатов"
+              class="w-full h-60 object-cover rounded-lg shadow-xl sm:col-span-2">
+          </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-4">
+          <h3 class="text-2xl font-semibold text-center text-purple-600">
+            Выберите необходимый анализ
+          </h3>
+          <div class="relative">
+            <input id="service-search" type="text" placeholder="Начните вводить название анализа..."
+              class="w-full px-4 py-2 border-2 border-purple-500 focus:outline-none focus:border-purple-700 text-gray-800 rounded-t-lg">
+            <div id="services-list"
+              class="h-80 overflow-y-auto divide-y divide-gray-200 bg-white rounded-b-lg shadow-inner"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Uzi -->
+    <section id="ultrasound" class="py-16 bg-[#794AC6]">
+      <div class="container mx-auto px-4 space-y-12">
+        <h2 class="text-4xl font-extrabold text-center text-white drop-shadow">
+          УЗИ — точная визуализация без боли
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div class="order-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <img src="usgpic1.webp" alt="Кабинет УЗИ — рабочая зона"
+              class="w-full h-64 object-cover rounded-2xl shadow-2xl ring-4 ring-white/20">
+            <img src="usgpic2.webp" alt="Аппарат УЗИ эксперт-класса"
+              class="w-full h-64 object-cover rounded-2xl shadow-2xl ring-4 ring-white/20">
+            <img src="usgpic3.webp" alt="Зона ожидания рядом с кабинетом УЗИ"
+              class="w-full h-64 object-cover rounded-2xl shadow-2xl ring-4 ring-white/20 sm:col-span-2">
+          </div>
+          <div class="order-2 space-y-6 text-white">
+            <h3 class="text-2xl font-semibold">Быстро, безопасно, информативно</h3>
+            <p class="text-white/90">
+              В ASR используем датчики эксперт-класса и бережные протоколы. Делаем исследования для взрослых и детей —
+              от скрининга до допплерометрии, с понятным заключением врача-сонолога.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start"><span class="mt-1 mr-3 text-white">✔</span><span class="text-white">Брюшная
+                  полость, почки, щитовидная и молочные железы</span></li>
+              <li class="flex items-start"><span class="mt-1 mr-3 text-white">✔</span><span class="text-white">Органы
+                  малого таза, беременность, фолликулометрия</span></li>
+              <li class="flex items-start"><span class="mt-1 mr-3 text-white">✔</span><span class="text-white">Сосуды
+                  (допплер, триплекс), сердце (ЭХОКГ)</span></li>
+              <li class="flex items-start"><span class="mt-1 mr-3 text-white">✔</span><span class="text-white">Суставы,
+                  мягкие ткани, лимфоузлы, мошонка</span></li>
+            </ul>
+            <p class="text-sm text-white/80">
+              Подготовка зависит от зоны исследования (натощак для брюшной полости, питьевой режим для мочевого пузыря и
+              т. д.) — при записи всё подскажем.
+            </p>
+          </div>
+        </div>
+        <div class="max-w-3xl mx-auto">
+          <div class="bg-white rounded-2xl shadow-2xl p-5">
+            <h3 class="text-2xl font-semibold text-center text-purple-700 mb-3">Услуги УЗИ</h3>
+            <div class="relative">
+              <input id="usg-search" type="text" placeholder="Например: сосуды, беременность, щитовидная…"
+                class="w-full px-5 py-3 rounded-full border-2 border-purple-500 focus:outline-none focus:border-purple-700 text-gray-800">
+            </div>
+            <div id="usg-list" class="mt-4 overflow-y-auto divide-y divide-gray-100 rounded-xl bg-white usg-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- lor -->
+    <section id="lor" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:min-h-[520px]">
+          <div class="space-y-6">
+            <h2 class="text-4xl font-extrabold text-purple-700">ЛОР-отделение ASR</h2>
+            <h3 class="text-2xl font-semibold text-purple-600 border-l-4 border-purple-600 pl-4">
+              Здоровье уха, горла и носа — без боли и ожиданий
+            </h3>
+            <p class="text-gray-700">
+              Проводим полный спектр диагностики и лечения заболеваний ЛОР-органов для детей и взрослых.
+              Используем эндоскопическое оборудование, щадящие методики и индивидуальные планы терапии.
+            </p>
+
+            <ul class="space-y-3">
+              <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span
+                  class="text-gray-800">Консультация ЛОР-врача, составление плана лечения</span></li>
+              <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span
+                  class="text-gray-800">Эндоскопия полости носа, носоглотки и гортани</span></li>
+              <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span
+                  class="text-gray-800">Аудиометрия и тимпанометрия (оценка слуха и функции среднего уха)</span></li>
+              <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span
+                  class="text-gray-800">Лечение ринита, синусита, тонзиллита, фарингита, отита</span></li>
+              <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span
+                  class="text-gray-800">Удаление серных пробок, инородных тел уха/носа</span></li>
+              <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span
+                  class="text-gray-800">Промывание лакун миндалин, местные процедуры при хроническом тонзиллите</span>
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center justify-center">
+            <img src="lorpic.webp" alt="ЛОР-кабинет ASR"
+              class="w-full max-w-3xl h-[28rem] md:h-[32rem] lg:h-[36rem] object-cover rounded-2xl shadow-2xl ring-4 ring-purple-100"
+              loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- eeg-echo -->
+    <section id="eeg-echo" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:min-h-[560px] items-center">
+          <div class="flex items-center justify-center">
+            <div class="w-full max-w-3xl flex flex-col gap-5">
+              <img src="exoeeg1.webp" alt="ЭЭГ — рабочее место и датчики"
+                class="w-full h-[20rem] md:h-[22rem] lg:h-[24rem] object-cover rounded-2xl shadow-2xl ring-4 ring-purple-100"
+                loading="lazy" decoding="async">
+              <img src="exoeeg2.webp" alt="ЭхоКГ/ЭЭГ оборудование"
+                class="w-full h-[20rem] md:h-[22rem] lg:h-[24rem] object-cover rounded-2xl shadow-2xl ring-4 ring-purple-100"
+                loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="space-y-6">
+            <h2 class="text-4xl font-extrabold text-purple-700">ЭЭГ и ЭХО в ASR</h2>
+            <h3 class="text-2xl font-semibold text-purple-600 border-l-4 border-purple-600 pl-4">
+              Нейро- и кардиодиагностика — точно, бережно, вовремя
+            </h3>
+            <p class="text-gray-700">
+              Мы используем современное оборудование и понятные протоколы, чтобы вы быстро получили
+              информативный результат и чёткие рекомендации специалиста.
+            </p>
+            <!-- eeg -->
+            <div class="rounded-xl bg-purple-50 border border-purple-100 p-4">
+              <h4 class="text-lg font-semibold text-purple-700 mb-2">ЭЭГ — электроэнцефалография</h4>
+              <ul class="space-y-2 text-gray-800">
+                <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span>Диагностика
+                    эпилептической активности, головных болей, обмороков, нарушений сна</span></li>
+                <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span>Рутинная ЭЭГ, ЭЭГ с
+                    функциональными пробами, по показаниям — с депривацией сна</span></li>
+                <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span>Удобная посадка/лежа,
+                    бережное наложение электродов, результат в день исследования</span></li>
+              </ul>
+            </div>
+            <!-- echo -->
+            <div class="rounded-xl bg-purple-50 border border-purple-100 p-4">
+              <h4 class="text-lg font-semibold text-purple-700 mb-2">ЭХО — эхокардиография (УЗИ сердца)</h4>
+              <ul class="space-y-2 text-gray-800">
+                <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span>Оценка клапанов,
+                    сократимости миокарда, фракции выброса, перикарда</span></li>
+                <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span>Допплерометрия
+                    потоков
+                    — для точной диагностики пороков и нарушений кровотока</span></li>
+                <li class="flex items-start"><span class="mt-1 mr-3 text-purple-600">✔</span><span>Безболезненно,
+                    безопасно, подходит взрослым и детям</span></li>
+              </ul>
+            </div>
+
+            <p class="text-sm text-gray-600">
+              Подготовка: для ЭЭГ избегайте кофеина за 4–6 часов; для ЭХО специальной подготовки чаще не требуется.
+              Подробности сообщим при записи.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- footer -->
+  <footer id="contacts" class="bg-white border-t border-purple-100">
+    <div class="container mx-auto px-4 py-12 md:py-16">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 items-start justify-items-center">
+        <div class="flex flex-col items-center self-start">
+          <img src="logo.png" alt="Medical Servis ASR" class="block h-36 md:h-44 lg:h-48 w-auto object-contain mb-2">
+          <p class="text-sm text-gray-600 max-w-xs text-center">
+            Консультативно-диагностическая клиника. Забота, точность и доказательная медицина.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <h4 class="text-lg font-semibold text-purple-700 mb-3">Время работы</h4>
+          <div class="space-y-2">
+            <div class="flex items-center justify-center gap-2 text-gray-800">
+              <span class="font-medium">Пн—Сб</span>
+              <span class="text-sm text-gray-700">08:00–16:00</span>
+            </div>
+            <div class="flex items-center justify-center gap-2 text-gray-800">
+              <span class="text-sm">Первая помощь, уколы и капельницы — <span
+                  class="font-semibold text-purple-700">24/7</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-fit mx-auto">
+          <h4 class="text-lg font-semibold text-purple-700 mb-3 text-center">Наши услуги</h4>
+          <ul class="space-y-2 text-left">
+            <li><a href="#inpatient" class="block text-gray-800 hover:text-purple-700 transition">Стационар</a></li>
+            <li><a href="#doctors" class="block text-gray-800 hover:text-purple-700 transition">Врачи</a></li>
+            <li><a href="#lab" class="block text-gray-800 hover:text-purple-700 transition">Лаборатория</a></li>
+            <li><a href="#ultrasound" class="block text-gray-800 hover:text-purple-700 transition">УЗИ</a></li>
+            <li><a href="#lor" class="block text-gray-800 hover:text-purple-700 transition">ЛОР</a></li>
+            <li><a href="#eeg-echo" class="block text-gray-800 hover:text-purple-700 transition">ЭХО &amp; ЭЭГ</a></li>
+          </ul>
+        </div>
+
+        <div class="text-center">
+          <h4 class="text-lg font-semibold text-purple-700 mb-3">Контакты</h4>
+          <ul class="space-y-2 mb-4">
+            <li><a href="tel:+998712955544" class="text-gray-800 hover:text-purple-700 transition">+998 71 295 55 44</a>
+            </li>
+            <li><a href="tel:+998909735562" class="text-gray-800 hover:text-purple-700 transition">+998 90 973 55 62</a>
+            </li>
+          </ul>
+          <h4 class="text-lg font-semibold text-purple-700 mb-2">Адрес</h4>
+          <p class="text-gray-800 mb-4 max-w-xs mx-auto">
+            г. Ташкент, Бектемирский район, улица Х. Байкаро, 28
+          </p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <a href="https://maps.app.goo.gl/Mz33V5EWsMpFXyjs9" target="_blank" rel="noopener"
+              class="inline-flex items-center px-4 py-2 rounded-md border-2 border-purple-700 text-purple-700 bg-white hover:bg-purple-700 hover:text-white transition">Google
+              Map</a>
+            <a href="https://yandex.uz/maps/-/CHhDZK~5" target="_blank" rel="noopener"
+              class="inline-flex items-center px-4 py-2 rounded-md border-2 border-purple-700 text-purple-700 bg-white hover:bg-purple-700 hover:text-white transition">Яндекс
+              карты</a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-10 pt-6 border-t border-purple-100 flex flex-col items-center gap-2 text-center">
+        <p class="text-sm text-gray-600">© <span id="year"></span> Medical Servis ASR. Все права защищены.</p>
+        <p class="text-xs text-gray-500">Сделано с заботой о пациентах.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="services2.js"></script>
+  <script src="script.js"></script>
 
 </body>
+
 </html>

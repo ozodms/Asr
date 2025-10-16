@@ -1,0 +1,729 @@
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+}
+
+.fade-in-right {
+    animation: fadeInRight 1s forwards;
+}
+
+.fade-out-left {
+    animation: fadeOutLeft 1s forwards;
+}
+
+.disease-card {
+    width: 12rem;
+    /* = w-48 */
+    flex-basis: 12rem;
+    /* фиксируем ширину в горизонтальном скролле */
+    height: 15rem;
+    /* общая высота карточки — единая для всех */
+    display: flex;
+    flex-direction: column;
+}
+
+.disease-img {
+    width: 100%;
+    height: 8.5rem;
+    /* одинаковая высота изображения */
+    object-fit: cover;
+    /* без искажений, обрезка по центру */
+    display: block;
+}
+
+.disease-title {
+    padding: 0.75rem;
+    /* ~ p-3 */
+    text-align: center;
+    color: #374151;
+    /* gray-700 */
+    font-size: 1.125rem;
+    /* text-lg */
+    line-height: 1.35;
+    min-height: 3.5rem;
+    /* фиксированная зона под название */
+    display: -webkit-box;
+    /* двухстрочный кламп, если текст длинный */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+/* ====== Hospital Admission section ====== */
+#admission .admission-box {
+    max-width: 1300px;
+    /* вместо жесткой w-[1300px] */
+    margin: 0 auto;
+    background: transparent;
+    /* фон задаёт сам section */
+}
+
+#admission .admission-text h2,
+#admission .admission-text p {
+    overflow-wrap: anywhere;
+    /* не даём тексту «выползать» */
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.usg-list {
+    height: clamp(10rem, 45vh, 24rem);
+    min-height: 0;
+    /* позволяет сжиматься внутри контейнеров */
+}
+
+.usg-list {
+    /* высота по содержимому, но не выше указанного порога */
+    max-height: clamp(10rem, 45vh, 24rem);
+    overflow-y: auto;
+}
+
+/* =========================
+   BASE ( >1536px )
+   ========================= */
+
+/* Контейнер на больших экранах */
+.container {
+    width: 100%;
+    max-width: 1480px;
+    /* для 2xl+ */
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Хиро-тексты по умолчанию */
+#slider-title {
+    font-size: 64px;
+    line-height: 1.1;
+}
+
+#slider-subtitle {
+    font-size: 22px;
+    line-height: 1.45;
+    max-width: 60ch;
+}
+
+/* Скрыть горизонтальные скроллы там, где нужны «ленточки» */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Навбар: логотип не раздувает высоту */
+nav .flex-shrink-0>img {
+    height: 56px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Превью-галереи (любые img с data-full) — базовая высота */
+img[data-full] {
+    display: block;
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: .75rem;
+}
+
+/* Доктора: базовая высота фото */
+#doctors .bg-white img {
+    height: 18rem;
+    object-fit: cover;
+}
+
+
+/* =========================
+     ≤1536px  (2xl)
+     ========================= */
+@media (max-width: 1536px) {
+    .container {
+        max-width: 1440px;
+    }
+
+    #slider-title {
+        font-size: 56px;
+    }
+
+    #slider-subtitle {
+        font-size: 20px;
+    }
+}
+
+
+/* =========================
+     ≤1280px  (xl)
+     ========================= */
+/* 1) Доктора: кнопки «Записаться/Подробнее» встают столбиком и меньше размером */
+@media (max-width: 1280px) {
+    .container {
+        max-width: 1240px;
+    }
+
+    nav .flex-shrink-0>img {
+        height: 56px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .nav-trigger {
+        display: none;
+    }
+
+    /* бургер не нужен на десктопе */
+    #nav-toggle+.container .nav-trigger .close-icon {
+        display: none;
+    }
+
+    /* крестик скрыт */
+    #mobile-menu {
+        display: none;
+    }
+
+    /* мобильное меню на десктопе вне потока */
+
+    /* Хиро */
+    #slider-title {
+        font-size: 48px;
+    }
+
+    #slider-subtitle {
+        font-size: 19px;
+    }
+
+    /* (1) блок действий в карточках врачей: вертикально + компактнее */
+    #doctors .bg-white .mt-auto.flex {
+        flex-direction: column;
+        /* столбиком */
+        gap: .5rem;
+        /* расстояние между кнопками */
+    }
+
+    #doctors .bg-white .mt-auto.flex>a,
+    #doctors .bg-white .mt-auto.flex>button {
+        padding: .5rem .75rem;
+        /* меньше отступы */
+        font-size: .9rem;
+        /* меньше шрифт */
+        width: 100%;
+        /* на всю ширину карточки — аккуратно выглядит */
+    }
+
+    /* Фото докторов немного меньше */
+    #doctors .bg-white img {
+        height: 16rem;
+    }
+}
+
+
+/* =========================
+     ≤1024px  (lg)
+     ========================= */
+/* 2) Навбар: лого и ссылки не «липнут», ссылки прячем в выпадающее меню */
+@media (max-width: 1024px) {
+
+    /* Чуть уже контейнер (опционально) */
+    .container {
+        max-width: 1000px;
+    }
+
+    nav .flex-shrink-0>img {
+        height: 52px;
+    }
+
+    /* ВАЖНО: прячем ТОЛЬКО верхний десктопный ul */
+    nav>.container>ul {
+        display: none;
+    }
+
+    /* показываем бургер */
+    .nav-trigger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* мобильное меню присутствует, но свёрнуто по высоте (для анимации) */
+    #mobile-menu {
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        border-top: 1px solid rgba(124, 58, 237, .12);
+        transition: max-height .3s ease;
+        will-change: max-height;
+    }
+
+    /* чекбокс включён → раскрыть меню */
+    #nav-toggle:checked~#mobile-menu {
+        max-height: 100vh;
+    }
+
+    /* переключаем иконки на кнопке */
+    #nav-toggle:checked+.container .nav-trigger .open-icon {
+        display: none;
+    }
+
+    #nav-toggle:checked+.container .nav-trigger .close-icon {
+        display: inline-block;
+    }
+
+    #hospital-info .flex {
+        align-items: center;
+    }
+
+    #hospital-info .lg\:w-1\/2 {
+        width: 100%;
+    }
+
+    #hospital-info h2,
+    #hospital-info h3,
+    #hospital-info h4,
+    #hospital-info p,
+    #hospital-info ul {
+        text-align: center;
+    }
+
+    #hospital-info img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #hospital-info .hospital-caption {
+        text-align: center;
+    }
+
+    /* Фолбэк, если id нет: у серой секции с таким лейаутом — тоже выравниваем */
+    section.bg-gray-50 .flex {
+        align-items: center;
+    }
+
+    section.bg-gray-50 .lg\:w-1\/2 {
+        width: 100%;
+    }
+
+    section.bg-gray-50 h3,
+    section.bg-gray-50 h4,
+    section.bg-gray-50 p,
+    section.bg-gray-50 ul {
+        text-align: center;
+    }
+
+    section.bg-gray-50 img[data-full] {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    section.bg-gray-50 .mt-4.text-sm.text-purple-600.text-center.font-medium {
+        text-align: center;
+    }
+
+    /* Превью галереи чуть ниже по высоте — меньше «ломается» */
+    img[data-full] {
+        height: 11.5rem;
+    }
+}
+
+/* =========================
+     ≤768px  (md)
+     ========================= */
+/* 4) #inpatient: текст сверху, фото снизу; 6) все тексты центрируем */
+@media (max-width: 768px) {
+
+    /* Контейнер уже (опционально) */
+    .container {
+        max-width: 740px;
+    }
+
+    nav .flex-shrink-0>img {
+        height: 48px;
+    }
+
+    /* Хиро */
+    #slider-title {
+        font-size: 36px;
+    }
+
+    #slider-subtitle {
+        font-size: 17px;
+    }
+
+    #slider {
+        padding-left: 2rem;
+        padding-right: 1rem;
+    }
+
+    #admission .admission-box {
+        flex-direction: column;
+        /* было row */
+    }
+
+    #admission .admission-text,
+    #admission .admission-media {
+        width: 100% !important;
+        /* перебиваем w-1/2 */
+    }
+
+    #admission .admission-text {
+        padding: 1rem 1rem 0 1rem;
+        /* компактнее отступы */
+        text-align: center;
+        align-items: center;
+    }
+
+    #admission .admission-media {
+        position: relative;
+        height: 300px;
+        /* адекватная высота блока с фото на мобилке */
+    }
+
+    #admission .admission-media img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* сам секшен больше не фиксированной высоты и складывается в колонку */
+    #inpatient {
+        height: auto;
+        /* перебиваем h-[600px] */
+        min-height: 0;
+        flex-direction: column;
+        /* было: row — теперь вертикально */
+    }
+
+    /* обе колонки на всю ширину */
+    #inpatient>div {
+        width: 100% !important;
+    }
+
+    /* текстовый блок: меньше паддинги и центрирование */
+    #inpatient>div:first-child {
+        padding: 1rem 1rem 0 1rem;
+        /* перебиваем p-12 */
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #inpatient>div:first-child h2 {
+        font-size: 1.5rem;
+        /* ~text-2xl: можно подправить под вкус */
+        line-height: 1.3;
+        margin-bottom: 0.75rem;
+    }
+
+    #inpatient>div:first-child p {
+        font-size: 1rem;
+        /* ~text-base */
+    }
+
+    /* блок с фото: высота картинки адекватная для мобилы */
+    #inpatient>div:nth-child(2) img {
+        height: 300px;
+        /* подгони при желании: 260–340px */
+        width: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* кнопку на фото выравниваем по центру снизу, чтобы не "уезжала" влево */
+    #inpatient>div:nth-child(2) .absolute {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 1rem;
+        /* было bottom-8 */
+    }
+
+    /* (5) «hospital admission» секция (фиолетовый баннер):
+       делаем 1 колонку, уменьшаем типографику, картинку — ниже текста */
+    .bg-\[\#794AC6\] [class*="grid"] {
+        display: grid;
+        grid-template-columns: 1fr !important;
+    }
+
+    .bg-\[\#794AC6\] h1,
+    .bg-\[\#794AC6\] h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .bg-\[\#794AC6\] p {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .bg-\[\#794AC6\] a {
+        display: inline-flex;
+        margin: 0 auto;
+    }
+
+    .bg-\[\#794AC6\] .relative {
+        min-height: 220px;
+    }
+
+    /* (6) Центровка текстов в большинстве секций — надёжный фолбэк */
+    section h1,
+    section h2,
+    section h3,
+    section h4,
+    section p,
+    section ul {
+        text-align: center;
+    }
+
+    /* Доктора: фото компактнее */
+    #doctors .bg-white img {
+        object-fit: contain;
+        /* вместо cover — показать всю картинку */
+        object-position: center;
+        /* по центру */
+        background-color: #fff;
+    }
+
+    /* Галерея превью */
+    img[data-full] {
+        height: 11rem;
+    }
+
+    .usg-list {
+        max-height: clamp(8rem, 40vh, 20rem);
+    }
+
+    .usg-list:empty {
+        display: none;
+    }
+}
+
+/* =========================
+     ≤640px  (sm)
+     ========================= */
+/* 7) «Наши услуги»: overlay-текст на карточках чуть больше;
+     8) фиксы: inpatient, «hospital admission», карточки врачей — помещаются */
+@media (max-width: 640px) {
+    .container {
+        max-width: 620px;
+    }
+
+    nav .flex-shrink-0>img {
+        height: 44px;
+    }
+
+    /* Хиро */
+    #slider-title {
+        font-size: 30px;
+    }
+
+    #slider-subtitle {
+        font-size: 16px;
+    }
+
+    #slider {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Навбар: на всякий случай ещё ужмём логотип */
+    nav .flex-shrink-0>img {
+        height: 44px;
+    }
+
+    .disease-card {
+        width: 10.5rem;
+        flex-basis: 10.5rem;
+        height: 13rem;
+    }
+
+    .disease-img {
+        height: 7rem;
+    }
+
+    .disease-title {
+        font-size: 1rem;
+        min-height: 3rem;
+    }
+
+    /* (7) Текст в оверлее карточек услуг — чуть крупнее */
+    /* Структура: .group > .absolute.inset-0 > span */
+    .group>.absolute.inset-0>span {
+        font-size: 1.75rem;
+        /* ~28px */
+    }
+
+    /* (8) #inpatient: паддинги меньше, текст — компактнее */
+
+    #inpatient>div:first-child h2 {
+        font-size: 1.25rem;
+    }
+
+    #inpatient>div:nth-child(2) img {
+        height: 260px;
+    }
+
+    /* (8) «hospital admission» (фиолетовый баннер) — ещё компактнее */
+    .bg-\[\#794AC6\] h1,
+    .bg-\[\#794AC6\] h2 {
+        font-size: 1.35rem;
+    }
+
+    .bg-\[\#794AC6\] p {
+        font-size: .95rem;
+    }
+
+    /* (8) Доктора: карточки ужимаем плавно */
+    #doctors .bg-white {
+        padding: 1rem;
+    }
+
+    #doctors .bg-white img {
+        height: 12rem;
+        /* у тебя уже есть это правило — оставляем */
+        object-fit: contain;
+        /* ВАЖНО: переопределяем cover */
+        object-position: center;
+        background-color: #fff;
+    }
+
+    #doctors .bg-white h3 {
+        font-size: 1rem;
+    }
+
+    #doctors .bg-white p {
+        font-size: .95rem;
+    }
+
+    #doctors .bg-white .mt-auto.flex>a,
+    #doctors .bg-white .mt-auto.flex>button {
+        font-size: .875rem;
+        padding: .5rem;
+    }
+
+    /* (3) В секции «info about the hospital» подпись и фото — строго по центру */
+    section.bg-gray-50 .mt-4.text-sm.text-purple-600.text-center.font-medium {
+        text-align: center;
+    }
+
+    section.bg-gray-50 img[data-full] {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    /* (9) «ЭХО & ЭЭГ»: переносим фото после текста — меняем порядок первых двух детей сетки */
+    #eeg-echo [class*="grid"] {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #eeg-echo [class*="grid"]> :first-child {
+        order: 2;
+    }
+
+    /* был фото → станет ниже */
+    #eeg-echo [class*="grid"]> :nth-child(2) {
+        order: 1;
+    }
+
+    /* текст вверх */
+}
+
+
+/* =========================
+     ≤480px  (xs)
+     ========================= */
+@media (max-width: 480px) {
+    .container {
+        max-width: 460px;
+    }
+
+    .disease-card {
+        width: 9.5rem;
+        flex-basis: 9.5rem;
+        height: 12rem;
+    }
+
+    .disease-img {
+        height: 6.5rem;
+    }
+
+    .disease-title {
+        font-size: 0.95rem;
+        min-height: 2.8rem;
+    }
+
+    /* Хиро */
+    #slider-title {
+        font-size: 26px;
+    }
+
+    #slider-subtitle {
+        font-size: 15px;
+    }
+
+    /* Доктора: ещё компактнее */
+    #doctors .bg-white img {
+        height: 11rem;
+        /* у тебя уже есть — подтверждаем */
+        object-fit: contain;
+        object-position: center;
+        background-color: #fff;
+    }
+
+    /* Галерея превью */
+    img[data-full] {
+        height: 10rem;
+    }
+
+    /* Общие отступы заголовков/параграфов — чуть меньше,
+       чтобы всё «влезало» и было ровно */
+    section h2 {
+        margin-bottom: 1rem;
+    }
+
+    section h3 {
+        margin-bottom: .75rem;
+    }
+
+    section p {
+        font-size: .95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #admission .admission-btn-desktop {
+        display: none !important;
+    }
+}
+
+@media (min-width: 768px) {
+    #admission .admission-btn-mobile {
+        display: none !important;
+    }
+}
