@@ -87,7 +87,7 @@
 }
 
 .usg-list {
-    height: clamp(10rem, 45vh, 24rem);
+    height: auto;
     min-height: 0;
     /* позволяет сжиматься внутри контейнеров */
 }
@@ -485,7 +485,7 @@ img[data-full] {
         margin: 0 auto;
     }
 
-    .bg-\[\#794AC6\] .relative {
+    #admission .admission-media {
         min-height: 220px;
     }
 
